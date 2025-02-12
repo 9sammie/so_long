@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 14:20:41 by maballet          #+#    #+#             */
-/*   Updated: 2025/02/11 14:47:21 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/02/12 15:14:19 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,9 @@ typedef struct	s_data
 	void	*textures[5];
 	t_map	map;
 }				t_data;
+
+char	*map_manage(char *file, t_data *data);
+int		game_manage(t_data *data, char *map);
+int		map_check(char *map);
 
 #endif
