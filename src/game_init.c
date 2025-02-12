@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 13:33:58 by maballet          #+#    #+#             */
-/*   Updated: 2025/02/12 14:12:13 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/02/12 16:50:07 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	data_init(t_data *data)
 	data->map.ver_length = 0;
 	data->map.coll_count = 0;
 	data->map.exit_count = 0;
+	data->map.map_length = 0;
 }
 
 int	main(int argc, char **argv)

@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:08:06 by maballet          #+#    #+#             */
-/*   Updated: 2025/02/12 15:12:40 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/02/12 17:00:23 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,15 @@ static char	*map_cpy(char *file)
 char	*map_manage(char *file, t_data *data)
 {
 	char	*map;
+	int	check;
 	
+	check = 0;
 	map = map_cpy(file);
 	if (map == NULL)
 		return (NULL);
-	map_check(map);
 	map_size (data, map);
-	//ft_printf("largeur : %d, hauteur : %d\n", data->map.hor_length, data->map.ver_length);
+	check = map_check(map, data);
+	if (check == 1)
+		return (NULL);
 	return (map);
 }

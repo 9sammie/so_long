@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 14:20:41 by maballet          #+#    #+#             */
-/*   Updated: 2025/02/12 15:14:19 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/02/12 16:50:23 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct	s_map
 	int		pos_count;
 	int		coll_count;
 	int		exit_count;
+	int		map_length;
 }				t_map;
 
 typedef struct	s_data
@@ -42,6 +43,6 @@ typedef struct	s_data
 
 char	*map_manage(char *file, t_data *data);
 int		game_manage(t_data *data, char *map);
-int		map_check(char *map);
+int		map_check(char *map, t_data *data);
 
 #endif

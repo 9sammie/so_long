@@ -8,7 +8,8 @@
 SRC_DIR = src
 SRC_FILES = game_init.c \
 			game_manage.c \
-			map_manage.c
+			map_manage.c \
+			map_check.c
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 
 #############################################################################################
