@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:12:00 by maballet          #+#    #+#             */
-/*   Updated: 2025/02/12 14:15:44 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/02/17 18:47:36 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	close_game(t_data *data)
 {
 	if (data == NULL)
-		return;
+		return ;
 	if (data->mlx_ptr && data->wind_ptr)
 		mlx_destroy_window (data->mlx_ptr, data->wind_ptr);
 	if (data->mlx_ptr)

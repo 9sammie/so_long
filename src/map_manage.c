@@ -6,33 +6,32 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:08:06 by maballet          #+#    #+#             */
-/*   Updated: 2025/02/12 17:00:23 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/02/17 18:43:14 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	map_size (t_data *data, char *map)
+char	*floodfill(char *map, int i, int width)
 {
-	int	i;
-	
-	i = 0;
-	while(map[i] != '\n' && map[i] != '\0')
-		i++;
-	data->map.hor_length = i;
-	i = 0;
-	while(map[i] != '\0')
-	{
-		if (map[i] == '\n')
-			data->map.ver_length++;
-		i++;
-	}
-	data->map.ver_length++;
+	if (map[i] == 'V' || map[i] == '1')
+		return (NULL);
+	if (map[i] == 'C')
+		map[i] = 'V';
+	if (map[i] == 'E')
+		map[i] = 'V';
+	if (map[i] == '0' || map[i] == 'P')
+		map[i] = 'V';
+	floodfill(map, i - 1, width);
+	floodfill(map, i + 1, width);
+	floodfill(map, i - width, width);
+	floodfill(map, i + width, width);
+	return (map);
 }
 
 static char	*get_all_lines(char *line, char *map, char *tmp, int fd)
 {
-	while(line != NULL)
+	while (line != NULL)
 	{
 		tmp = map;
 		if (tmp == NULL)
@@ -43,46 +42,52 @@ static char	*get_all_lines(char *line, char *map, char *tmp, int fd)
 		if (tmp != NULL)
 			free (tmp);
 		if (map == NULL)
+		{
+			close (fd);
 			return (NULL);
+		}
 		line = get_next_line(fd);
 	}
-	return(map);
+	return (map);
 }
 
-static char	*map_cpy(char *file)
+static char	*map_cpy(char *file, t_data *data)
 {
 	int		fd;
 	char	*line;
 	char	*map;
 	char	*tmp;
-	
+	int		i;
+
+	i = 0;
 	fd = open (file, O_RDONLY);
 	if (fd == -1)
 		return (NULL);
 	map = NULL;
 	tmp = NULL;
 	line = get_next_line(fd);
+	data->map.width = ft_strlen(line) - 1;
 	map = get_all_lines(line, map, tmp, fd);
 	if (map == NULL)
-	{
-		close (fd);
 		return (NULL);
-	}
-	//ft_printf("%s\n", map);
+	while (map[i++])
+		if (map[i] == '\n')
+			data->map.height++;
+	data->map.height++;
 	close (fd);
+	data->map.size = ft_strlen(map) + 1;
 	return (map);
 }
 
 char	*map_manage(char *file, t_data *data)
 {
 	char	*map;
-	int	check;
-	
+	int		check;
+
 	check = 0;
-	map = map_cpy(file);
+	map = map_cpy(file, data);
 	if (map == NULL)
 		return (NULL);
-	map_size (data, map);
 	check = map_check(map, data);
 	if (check == 1)
 		return (NULL);
