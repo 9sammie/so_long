@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 14:20:41 by maballet          #+#    #+#             */
-/*   Updated: 2025/02/17 18:22:45 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/02/17 20:10:58 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,22 @@ typedef struct	s_map
 	int		size;
 }				t_map;
 
+typedef struct	s_img
+{
+	char	*addr;
+	int		bpp;
+	int		line_length;
+	int		endian;
+}				t_img;
+
 typedef struct	s_data
 {
 	void	*mlx_ptr;
-	void	*wind_ptr;
+	void	*win_ptr;
+	void	*img_ptr;
 	void	*textures[5];
 	t_map	map;
+	t_img	img;
 }				t_data;
 
 char	*map_manage(char *file, t_data *data);
