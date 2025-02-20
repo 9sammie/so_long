@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 13:33:58 by maballet          #+#    #+#             */
-/*   Updated: 2025/02/17 20:10:53 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/02/19 17:07:18 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ void	data_init(t_data *data)
 	data->img.bpp = 0;
 	data->img.line_length = 0;
 	data->img.endian = 0;
+	data->texture.wall = 0;
+	data->texture.floor = 0;
+	data->texture.coll = 0;
+	data->texture.exit = 0;
+	data->texture.player = 0;
 }
 
 int	main(int argc, char **argv)
