@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:45:51 by maballet          #+#    #+#             */
-/*   Updated: 2025/02/24 18:40:18 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/02/24 20:31:55 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,34 @@ int	draw_tile(t_data *data, int i)
 	return (0);
 }
 
+static int	update_tiles_utils(t_data *data, int dir, int *i)
+{
+	if (data->map.map[*i + dir] == 'C')
+		data->map.coll_count--;
+	if (data->map.map[*i + dir] == 'E' && data->map.coll_count != 0)
+		return (0);
+	if (data->map.map[*i + dir] == 'E' && data->map.coll_count == 0)
+		data->map.exit_count = 0;
+	data->map.map[*i] = '0';
+	data->map.map[*i + dir] = 'P';
+	draw_tile(data, *i);
+	if (dir == -1 || dir == 1)
+		data->img.x += dir;
+	if (dir == -(data->map.width + 1))
+		data->img.y -= 1;
+	if (dir == (data->map.width + 1))
+		data->img.y += 1;
+	draw_tile(data, (*i + dir));
+	if (data->map.exit_count == 0)
+	{
+		close_game(data);
+		ft_putendl_fd("\n✧WOW✧    ⋋| ◉ ͟ʖ ◉ |⋌     ✧OMG✧\n\n(⚆ᗝ⚆)      SUCCESS    \
+  (⊙︿⊙ ✿)\n\n(─‿─)   °˖✧◝(⁰▿⁰)◜✧˖°   (─‿─)\n", 1);
+		return (0);
+	}
+	return (0);
+}
+
 static int	update_tiles(t_data *data, int dir)
 {
 	int	i;
@@ -54,15 +82,10 @@ static int	update_tiles(t_data *data, int dir)
 		}
 		else
 		{
-			if (data->map.map[i] == 'P')
+			if (data->map.map[i] == 'P' && data->map.map[i + dir] != '1')
 			{
-				data->map.map[i] = '0';
-				data->map.map[i + dir] = 'P';
-				ft_printf("i = %d \n i + dir = %d\n",i, i + dir);
-				draw_tile(data, i);
-				draw_tile(data, (i + dir));
-				
-				return (1);
+				update_tiles_utils(data, dir, &i);
+				return (0);
 			}
 			data->img.x++;
 		}
@@ -79,5 +102,11 @@ int	handle_keypress(int keycode, t_data *data)
 	data->img.y = 0;
 	if (keycode == XK_Left)
 		update_tiles(data, (-1));
+	if (keycode == XK_Right)
+		update_tiles(data, (1));
+	if (keycode == XK_Up)
+		update_tiles(data, -(data->map.width + 1));
+	if (keycode == XK_Down)
+		update_tiles(data, (data->map.width + 1));
 	return (0);
 }

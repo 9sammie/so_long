@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:08:06 by maballet          #+#    #+#             */
-/*   Updated: 2025/02/24 17:54:28 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/02/24 19:16:37 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,9 @@ char	*map_manage(char *file, t_data *data)
 	data->map.size = ft_strlen(data->map.map) + 1;
 	check = map_check(data);
 	if (check == 1)
+	{
+		free(data->map.map);
 		return (NULL);
+	}
 	return (data->map.map);
 }

@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:12:00 by maballet          #+#    #+#             */
-/*   Updated: 2025/02/24 18:37:49 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/02/24 20:59:15 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,8 @@ int	close_game(t_data *data)
 		mlx_destroy_image(data->mlx_ptr, data->texture.coll);
 	if (data->mlx_ptr && data->win_ptr)
 		mlx_destroy_window (data->mlx_ptr, data->win_ptr);
-	free(data->map.map);
-	// if (data->mlx_ptr)
-	// {
-	// 	mlx_destroy_display (data->mlx_ptr);
-	// 	free (data->mlx_ptr);
-	// }
+	if (data->map.map)
+		free(data->map.map);
 	return (0);
 }
 
@@ -103,7 +99,8 @@ static int	open_game(int width, int height, t_data *data)
 		return (1);
 	mlx_hook(data->win_ptr, 17, 0, close_game, data);
 	mlx_key_hook(data->win_ptr, handle_keypress, data);
-	// mlx_loop_hook(data->mlx_ptr, apply_texture, &data);
+	if (data->map.exit_count == 0)
+		return (1);
 	mlx_loop(data->mlx_ptr);
 	if (data->mlx_ptr)
 	{
