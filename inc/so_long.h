@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 14:20:41 by maballet          #+#    #+#             */
-/*   Updated: 2025/02/20 12:56:20 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/02/21 18:56:45 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct	s_map
 	int		coll_count;
 	int		exit_count;
 	int		size;
+	char	*map;
 }				t_map;
 
 typedef struct	s_img
@@ -49,6 +50,8 @@ typedef struct	s_img
 	int		bpp;
 	int		line_length;
 	int		endian;
+	int		x;
+	int		y;
 }				t_img;
 
 typedef struct	s_data
@@ -63,8 +66,11 @@ typedef struct	s_data
 }				t_data;
 
 char	*map_manage(char *file, t_data *data);
-int		game_manage(t_data *data, char *map);
-int		map_check(char *map, t_data *data);
+int		game_manage(t_data *data);
+int		map_check(t_data *data);
 char	*floodfill(char *map, int i, int width);
+int		draw_tile(t_data *data, int i);
+int		handle_keypress(int keycode, t_data *data);
+int		close_game(t_data *data);
 
 #endif

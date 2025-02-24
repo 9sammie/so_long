@@ -6,13 +6,13 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 13:33:58 by maballet          #+#    #+#             */
-/*   Updated: 2025/02/19 17:07:18 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/02/24 15:19:21 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	data_init(t_data *data)
+static void	data_init(t_data *data)
 {
 	data->mlx_ptr = NULL;
 	data->win_ptr = NULL;
@@ -24,10 +24,13 @@ void	data_init(t_data *data)
 	data->map.coll_count = 0;
 	data->map.exit_count = 0;
 	data->map.size = 0;
+	data->map.map = NULL;
 	data->img.addr = NULL;
 	data->img.bpp = 0;
 	data->img.line_length = 0;
 	data->img.endian = 0;
+	data->img.x = 0;
+	data->img.y = 0;
 	data->texture.wall = 0;
 	data->texture.floor = 0;
 	data->texture.coll = 0;
@@ -37,26 +40,15 @@ void	data_init(t_data *data)
 
 int	main(int argc, char **argv)
 {
-	t_data	*data;
-	char	*map;
+	t_data	data;
 
-	map = NULL;
 	if (argc != 2)
 		return (1);
-	data = malloc(sizeof(t_data));
-	if (data == NULL)
-		return (2);
-	data_init (data);
-	map = map_manage(argv[1], data);
-	if (map == NULL)
-	{
-		free(data);
+	data_init (&data);
+	data.map.map = map_manage(argv[1], &data);
+	if (data.map.map == NULL)
 		return (3);
-	}
-	if (game_manage(data, map) == 1)
-	{
-		free(data);
+	if (game_manage(&data) == 1)
 		return (4);
-	}
 	return (0);
 }

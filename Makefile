@@ -9,7 +9,8 @@ SRC_DIR = src
 SRC_FILES = game_init.c \
 			game_manage.c \
 			map_manage.c \
-			map_check.c
+			map_check.c \
+			game_utils.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 
@@ -21,7 +22,7 @@ SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 
 NAME = so_long
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -I/usr/include -Imlx -O3 -g3
+CFLAGS = -Wall -Werror -Wextra -I/usr/include -Imlx -g3
 LFLAGS = -Lmlx -lmlx -lXext -lX11 -Imlx
 HEADERS = inc/so_long.h
 INCLUDES = -I inc -I $(LIBFT_DIR)/inc -I mlx

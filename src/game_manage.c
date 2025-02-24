@@ -6,52 +6,34 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:12:00 by maballet          #+#    #+#             */
-/*   Updated: 2025/02/20 14:07:24 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/02/24 18:37:49 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	apply_texture(t_data *data, char *map)
+static int	apply_texture(t_data *data)
 {
-	int	x;
-	int	y;
 	int	i;
-	void	*img;
-	
-	y = 0;
+
 	i = 0;
-	while(map[i])
+	while(data->map.map[i])
 	{
-		if (map[i] == '\n')
+		if (data->map.map[i] == '\n')
 		{
-			y++;
-			x = 0;
+			data->img.y++;
+			data->img.x = 0;
 		}
 		else
 		{
-			if (map[i] == '1')
-				img = data->texture.wall;
-			else if (map[i] == '0')
-				img = data->texture.floor;
-			else if (map[i] == 'C')
-				img = data->texture.coll;
-			else if (map[i] == 'P')
-				img = data->texture.player;
-			else if (map[i] == 'E')
-				img = data->texture.exit;
-			if (img)
-				mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-										img, x * 46, y * 46);
-			else
-			{
-				ft_putendl_fd ("Error\nTexture missing", 2);
+			if (draw_tile(data, i) == 1)
 				return (1);
-			}
-			x++;
+			data->img.x++;
 		}
 		i++;
 	}
+	data->img.x = 0;
+	data->img.y = 0;
 	return (0);
 }
 
@@ -82,17 +64,10 @@ static int	save_texture(t_data *data)
 	return(0);
 }
 
-static void	close_game(t_data *data)
+int	close_game(t_data *data)
 {
-	if (data == NULL)
-		return ;
-	if (data->mlx_ptr && data->win_ptr)
-		mlx_destroy_window (data->mlx_ptr, data->win_ptr);
 	if (data->mlx_ptr)
-	{
-		mlx_destroy_display (data->mlx_ptr);
-		free (data->mlx_ptr);
-	}
+		mlx_loop_end(data->mlx_ptr);
 	if (data->texture.wall)
 		mlx_destroy_image(data->mlx_ptr, data->texture.wall);
 	if (data->texture.floor)
@@ -103,32 +78,52 @@ static void	close_game(t_data *data)
 		mlx_destroy_image(data->mlx_ptr, data->texture.exit);
 	if (data->texture.coll)
 		mlx_destroy_image(data->mlx_ptr, data->texture.coll);
+	if (data->mlx_ptr && data->win_ptr)
+		mlx_destroy_window (data->mlx_ptr, data->win_ptr);
+	free(data->map.map);
+	// if (data->mlx_ptr)
+	// {
+	// 	mlx_destroy_display (data->mlx_ptr);
+	// 	free (data->mlx_ptr);
+	// }
+	return (0);
 }
 
-static int	open_game(int width, int height, t_data *data, char *map)
+static int	open_game(int width, int height, t_data *data)
 {
 	data->mlx_ptr = mlx_init();
 	if (data->mlx_ptr == NULL)
 		return (1);
 	if (save_texture(data) == 1)
 		return (1);
-	data->win_ptr = mlx_new_window(data->mlx_ptr, width, height, "hi :)");
+	data->win_ptr = mlx_new_window(data->mlx_ptr, width, height, "Greedy Vamp'");
 	if (data->win_ptr == NULL)
 		return (1);
-	if (apply_texture(data, map) == 1)
+	if (apply_texture(data) == 1)
 		return (1);
+	mlx_hook(data->win_ptr, 17, 0, close_game, data);
+	mlx_key_hook(data->win_ptr, handle_keypress, data);
+	// mlx_loop_hook(data->mlx_ptr, apply_texture, &data);
 	mlx_loop(data->mlx_ptr);
+	if (data->mlx_ptr)
+	{
+		mlx_destroy_display (data->mlx_ptr);
+		free (data->mlx_ptr);
+	}
 	return (0);
 }
 
-int	game_manage(t_data *data, char *map)
+int	game_manage(t_data *data)
 {
-	// free(map);
-	if (open_game(data->map.width *46, data->map.height *46, data, map) == 1)
+	if (open_game(data->map.width *46, data->map.height *46, data) == 1)
 	{
 		close_game(data);
+		if (data->mlx_ptr)
+		{
+			mlx_destroy_display (data->mlx_ptr);
+			free (data->mlx_ptr);
+		}
 		return (1);
 	}
-	close_game(data);
 	return (0);
 }
