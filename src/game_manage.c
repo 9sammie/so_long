@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:12:00 by maballet          #+#    #+#             */
-/*   Updated: 2025/02/24 20:59:15 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/02/26 15:11:04 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,19 @@ static int	save_texture(t_data *data)
 	int	width;
 	int	height;
 
-	width = 46;
-	height = 46;
+	width = 100;
+	height = 100;
 
 	data->texture.wall = mlx_xpm_file_to_image(data->mlx_ptr,
-				"textures/wall.xpm", &width, &height);
+				"textures/ca_wall.xpm", &width, &height);
 	data->texture.floor = mlx_xpm_file_to_image(data->mlx_ptr,
-				"textures/floor.xpm", &width, &height);
+				"textures/ca_floor.xpm", &width, &height);
 	data->texture.coll = mlx_xpm_file_to_image(data->mlx_ptr,
-				"textures/collectible.xpm", &width, &height);
+				"textures/ca_collectible.xpm", &width, &height);
 	data->texture.exit = mlx_xpm_file_to_image(data->mlx_ptr,
-				"textures/exit.xpm", &width, &height);
+				"textures/ca_exit.xpm", &width, &height);
 	data->texture.player = mlx_xpm_file_to_image(data->mlx_ptr,
-				"textures/player.xpm", &width, &height);
+				"textures/ca_player.xpm", &width, &height);
 	if (!data->texture.wall || !data->texture.floor || !data->texture.coll ||
 		!data->texture.exit || !data->texture.player)
 	{
@@ -112,7 +112,7 @@ static int	open_game(int width, int height, t_data *data)
 
 int	game_manage(t_data *data)
 {
-	if (open_game(data->map.width *46, data->map.height *46, data) == 1)
+	if (open_game(data->map.width *100, data->map.height *100, data) == 1)
 	{
 		close_game(data);
 		if (data->mlx_ptr)

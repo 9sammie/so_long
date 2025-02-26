@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 13:32:23 by maballet          #+#    #+#             */
-/*   Updated: 2024/11/26 16:39:12 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/02/26 17:24:07 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@ char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	start;
 	size_t	end;
-	size_t	i;
 
 	start = 0;
 	end = ft_strlen(s1);
-	i = 0;
 	if (!s1 || !set)
 		return (NULL);
 	while (s1[start] && ft_strchr(set, s1[start]))

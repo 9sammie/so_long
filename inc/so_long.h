@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 14:20:41 by maballet          #+#    #+#             */
-/*   Updated: 2025/02/21 18:56:45 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/02/26 15:28:31 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct	s_data
 	void	*mlx_ptr;
 	void	*win_ptr;
 	void	*img_ptr;
+	int		move_count;
 	void	*textures[5];
 	t_map	map;
 	t_img	img;

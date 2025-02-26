@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 13:33:58 by maballet          #+#    #+#             */
-/*   Updated: 2025/02/24 15:19:21 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/02/26 15:36:10 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void	data_init(t_data *data)
 	data->mlx_ptr = NULL;
 	data->win_ptr = NULL;
 	data->img_ptr = NULL;
+	data->move_count = 1;
 	data->map.width = 0;
 	data->map.height = 0;
 	data->map.pos_count = 0;

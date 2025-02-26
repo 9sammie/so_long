@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:45:51 by maballet          #+#    #+#             */
-/*   Updated: 2025/02/24 20:31:55 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/02/26 16:23:34 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	draw_tile(t_data *data, int i)
 		img = data->texture.exit;
 	if (img != NULL)
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-			img, data->img.x * 46, data->img.y * 46);
+			img, data->img.x * 100, data->img.y * 100);
 	else
 	{
 		ft_putendl_fd ("Error\nTexture missing", 2);
@@ -59,10 +59,11 @@ static int	update_tiles_utils(t_data *data, int dir, int *i)
 	if (data->map.exit_count == 0)
 	{
 		close_game(data);
-		ft_putendl_fd("\n✧WOW✧    ⋋| ◉ ͟ʖ ◉ |⋌     ✧OMG✧\n\n(⚆ᗝ⚆)      SUCCESS    \
-  (⊙︿⊙ ✿)\n\n(─‿─)   °˖✧◝(⁰▿⁰)◜✧˖°   (─‿─)\n", 1);
+		ft_putendl_fd("\n\n\n✧WOW✧⋋| ◉ ͟ʖ ◉ |⋌✧OMG✧\n\n(⚆ᗝ⚆)SUCCESS(⊙︿⊙)", 0);
 		return (0);
 	}
+	if (data->map.exit_count != 0)
+		ft_printf("move count = %d\n", data->move_count++);
 	return (0);
 }
 
@@ -73,7 +74,7 @@ static int	update_tiles(t_data *data, int dir)
 	i = 0;
 	data->img.x = 0;
 	data->img.y = 0;
-	while(data->map.map[i])
+	while(data->map.map[i++])
 	{
 		if (data->map.map[i] == '\n')
 		{
@@ -89,7 +90,6 @@ static int	update_tiles(t_data *data, int dir)
 			}
 			data->img.x++;
 		}
-		i++;
 	}
 	return (0);
 }

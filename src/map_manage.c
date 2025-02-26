@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:08:06 by maballet          #+#    #+#             */
-/*   Updated: 2025/02/24 19:16:37 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/02/26 16:12:27 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 char	*floodfill(char *map, int i, int width)
 {
-	if (map[i] == 'V' || map[i] == '1')
+	if (map[i] == 'V' || map[i] == '1' || map[i] == 'E')
 		return (NULL);
 	if (map[i] == 'C')
 		map[i] = 'V';
-	if (map[i] == 'E')
-		map[i] = 'V';
+	// if (map[i] == 'E')
+	// 	map[i] = 'V';
 	if (map[i] == '0' || map[i] == 'P')
 		map[i] = 'V';
 	floodfill(map, i - 1, width);
