@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:12:00 by maballet          #+#    #+#             */
-/*   Updated: 2025/02/26 15:11:04 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/02/27 16:24:02 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	apply_texture(t_data *data)
 	int	i;
 
 	i = 0;
-	while(data->map.map[i])
+	while (data->map.map[i])
 	{
 		if (data->map.map[i] == '\n')
 		{
@@ -44,24 +44,23 @@ static int	save_texture(t_data *data)
 
 	width = 100;
 	height = 100;
-
 	data->texture.wall = mlx_xpm_file_to_image(data->mlx_ptr,
-				"textures/ca_wall.xpm", &width, &height);
+			"textures/ca_wall.xpm", &width, &height);
 	data->texture.floor = mlx_xpm_file_to_image(data->mlx_ptr,
-				"textures/ca_floor.xpm", &width, &height);
+			"textures/ca_floor.xpm", &width, &height);
 	data->texture.coll = mlx_xpm_file_to_image(data->mlx_ptr,
-				"textures/ca_collectible.xpm", &width, &height);
+			"textures/ca_collectible.xpm", &width, &height);
 	data->texture.exit = mlx_xpm_file_to_image(data->mlx_ptr,
-				"textures/ca_exit.xpm", &width, &height);
+			"textures/ca_exit.xpm", &width, &height);
 	data->texture.player = mlx_xpm_file_to_image(data->mlx_ptr,
-				"textures/ca_player.xpm", &width, &height);
-	if (!data->texture.wall || !data->texture.floor || !data->texture.coll ||
-		!data->texture.exit || !data->texture.player)
+			"textures/ca_player.xpm", &width, &height);
+	if (!data->texture.wall || !data->texture.floor || !data->texture.coll
+		|| !data->texture.exit || !data->texture.player)
 	{
 		ft_putendl_fd("Error\nFailed to load texture", 2);
-		return(1);
+		return (1);
 	}
-	return(0);
+	return (0);
 }
 
 int	close_game(t_data *data)
@@ -92,7 +91,8 @@ static int	open_game(int width, int height, t_data *data)
 		return (1);
 	if (save_texture(data) == 1)
 		return (1);
-	data->win_ptr = mlx_new_window(data->mlx_ptr, width, height, "Greedy Vamp'");
+	data->win_ptr = mlx_new_window(data->mlx_ptr, width, height,
+			"star night");
 	if (data->win_ptr == NULL)
 		return (1);
 	if (apply_texture(data) == 1)
@@ -112,7 +112,7 @@ static int	open_game(int width, int height, t_data *data)
 
 int	game_manage(t_data *data)
 {
-	if (open_game(data->map.width *100, data->map.height *100, data) == 1)
+	if (open_game(data->map.width * 100, data->map.height * 100, data) == 1)
 	{
 		close_game(data);
 		if (data->mlx_ptr)

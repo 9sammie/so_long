@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 15:12:59 by maballet          #+#    #+#             */
-/*   Updated: 2025/02/26 16:12:48 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/02/27 16:20:35 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,8 @@ int	map_check(t_data *data)
 		ft_putendl_fd("Error\nMap too small or wrong element count", 2);
 		return (1);
 	}
-	flofi = floodfill(ft_strdup(data->map.map), data->map.pos, data->map.width);
+	flofi = floodfill(ft_strdup(data->map.map), data->map.pos,
+			(data->map.width + 1));
 	if (ft_strchr(flofi, 'C') || ft_strchr(flofi, 'P'))
 	{
 		ft_putendl_fd("Error\nMap not solvable", 2);

@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:45:51 by maballet          #+#    #+#             */
-/*   Updated: 2025/02/26 16:23:34 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/02/27 16:21:03 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static int	update_tiles(t_data *data, int dir)
 	i = 0;
 	data->img.x = 0;
 	data->img.y = 0;
-	while(data->map.map[i++])
+	while (data->map.map[i++])
 	{
 		if (data->map.map[i] == '\n')
 		{
