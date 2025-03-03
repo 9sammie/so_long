@@ -6,12 +6,11 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:08:06 by maballet          #+#    #+#             */
-/*   Updated: 2025/03/03 15:18:21 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/03/03 16:06:44 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-//#include <x11/keysymdef.h>
 
 int	check_inspect(t_data *data)
 {
