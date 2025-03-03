@@ -6,11 +6,21 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:09:17 by maballet          #+#    #+#             */
-/*   Updated: 2025/02/06 18:22:32 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/03/03 16:01:10 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static void	atoi_extend(const char *nptr, int *i, int *sign)
+{
+	if (nptr[*i] == '-' || nptr[*i] == '+')
+	{
+		if (nptr[*i] == '-')
+			*sign = -1;
+		(*i)++;
+	}
+}
 
 long	ft_atoi(const char *nptr)
 {
@@ -25,12 +35,7 @@ long	ft_atoi(const char *nptr)
 		return (LONG_MAX);
 	while (nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13))
 		i++;
-	if (nptr[i] == '+' || nptr[i] == '-')
-	{
-		if (nptr[i] == '-')
-			sign = -1;
-		i++;
-	}
+	atoi_extend(nptr, &i, &sign);
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
 		result = result * 10 + (nptr[i] - '0');

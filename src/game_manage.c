@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:12:00 by maballet          #+#    #+#             */
-/*   Updated: 2025/02/27 16:24:02 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/03/03 17:06:31 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,14 @@ int	close_game(t_data *data)
 	if (data->texture.coll)
 		mlx_destroy_image(data->mlx_ptr, data->texture.coll);
 	if (data->mlx_ptr && data->win_ptr)
+	{
 		mlx_destroy_window (data->mlx_ptr, data->win_ptr);
+		mlx_destroy_display (data->mlx_ptr);
+		free (data->mlx_ptr);
+	}
 	if (data->map.map)
 		free(data->map.map);
-	return (0);
+	exit (0);
 }
 
 static int	open_game(int width, int height, t_data *data)
@@ -97,30 +101,17 @@ static int	open_game(int width, int height, t_data *data)
 		return (1);
 	if (apply_texture(data) == 1)
 		return (1);
-	mlx_hook(data->win_ptr, 17, 0, close_game, data);
 	mlx_key_hook(data->win_ptr, handle_keypress, data);
+	mlx_hook(data->win_ptr, DestroyNotify, 0, close_game, data);
 	if (data->map.exit_count == 0)
 		return (1);
 	mlx_loop(data->mlx_ptr);
-	if (data->mlx_ptr)
-	{
-		mlx_destroy_display (data->mlx_ptr);
-		free (data->mlx_ptr);
-	}
 	return (0);
 }
 
 int	game_manage(t_data *data)
 {
 	if (open_game(data->map.width * 100, data->map.height * 100, data) == 1)
-	{
 		close_game(data);
-		if (data->mlx_ptr)
-		{
-			mlx_destroy_display (data->mlx_ptr);
-			free (data->mlx_ptr);
-		}
-		return (1);
-	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 13:33:58 by maballet          #+#    #+#             */
-/*   Updated: 2025/02/26 15:36:10 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/03/03 17:06:46 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,20 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	if (argc != 2)
+	if (argc < 2)
+	{
+		ft_putendl_fd ("Error\nMissing map", 2);
 		return (1);
+	}
+	if (argc > 2)
+	{
+		ft_putendl_fd ("Error\nToo many arguments", 2);
+		return (1);
+	}
 	data_init (&data);
 	data.map.map = map_manage(argv[1], &data);
 	if (data.map.map == NULL)
 		return (3);
-	if (game_manage(&data) == 1)
-		return (4);
+	game_manage(&data);
 	return (0);
 }

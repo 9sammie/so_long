@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:08:06 by maballet          #+#    #+#             */
-/*   Updated: 2025/03/03 16:06:44 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/03/03 16:38:54 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ char	*map_manage(char *file, t_data *data)
 	data->map.map = map_cpy(file, data);
 	if (data->map.map == NULL)
 	{
-		ft_putendl_fd("Error\nNo map", 2);
+		ft_putendl_fd("Error\nmissing map", 2);
 		return (NULL);
 	}
 	data->map.size = ft_strlen(data->map.map) + 1;

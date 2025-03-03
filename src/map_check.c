@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 15:12:59 by maballet          #+#    #+#             */
-/*   Updated: 2025/03/03 15:18:56 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/03/03 16:46:28 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	closed_side(t_data *data, int *i)
 		{
 			if (data->map.map[*i + 1] != '1' || data->map.map[*i - 1] != '1')
 			{
-				ft_putendl_fd("Error\nMap not closed 2", 2);
+				ft_putendl_fd("Error\nMap not closed", 2);
 				return (1);
 			}
 			(*i)++;
@@ -68,7 +68,7 @@ int	closed_check(t_data *data)
 	{
 		if (data->map.map[i] != '1')
 		{
-			ft_putendl_fd("Error\nMap not closed 1", 2);
+			ft_putendl_fd("Error\nMap not closed", 2);
 			return (1);
 		}
 		i++;
@@ -79,7 +79,7 @@ int	closed_check(t_data *data)
 	{
 		if (data->map.map[i] != '1')
 		{
-			ft_putendl_fd("Error\nMap not closed 3", 2);
+			ft_putendl_fd("Error\nMap not closed", 2);
 			return (1);
 		}
 		i++;
