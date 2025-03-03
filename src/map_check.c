@@ -6,13 +6,13 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 15:12:59 by maballet          #+#    #+#             */
-/*   Updated: 2025/02/27 16:20:35 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/03/03 15:18:56 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	count_elements(char *map, t_data *data)
+int	count_elements(char *map, t_data *data)
 {
 	int	i;
 
@@ -59,7 +59,7 @@ static int	closed_side(t_data *data, int *i)
 	return (0);
 }
 
-static int	closed_check(t_data *data)
+int	closed_check(t_data *data)
 {
 	int	i;
 
@@ -87,7 +87,7 @@ static int	closed_check(t_data *data)
 	return (0);
 }
 
-static int	rectangular_check(t_data *data)
+int	rectangular_check(t_data *data)
 {
 	int	i;
 	int	j;
@@ -113,13 +113,12 @@ static int	rectangular_check(t_data *data)
 
 int	map_check(t_data *data)
 {
-	int		check[3];
+	int		check;
 	char	*flofi;
 
-	check[0] = count_elements(data->map.map, data);
-	check[1] = rectangular_check(data);
-	check[2] = closed_check(data);
-	if (check[0] == 1 || check[1] == 1 || check[2] == 1)
+	check = 0;
+	check = check_inspect(data);
+	if (check == 1)
 		return (1);
 	if (data->map.pos_count != 1 || data->map.exit_count != 1
 		|| data->map.coll_count < 1 || data->map.width < 3

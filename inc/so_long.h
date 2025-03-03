@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 14:20:41 by maballet          #+#    #+#             */
-/*   Updated: 2025/02/26 15:28:31 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/03/03 14:51:57 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,9 @@ char	*floodfill(char *map, int i, int width);
 int		draw_tile(t_data *data, int i);
 int		handle_keypress(int keycode, t_data *data);
 int		close_game(t_data *data);
+int		rectangular_check(t_data *data);
+int		closed_check(t_data *data);
+int		count_elements(char *map, t_data *data);
+int		check_inspect(t_data *data);
 
 #endif

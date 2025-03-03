@@ -6,12 +6,33 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:08:06 by maballet          #+#    #+#             */
-/*   Updated: 2025/02/27 16:19:23 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/03/03 15:18:21 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 //#include <x11/keysymdef.h>
+
+int	check_inspect(t_data *data)
+{
+	int		check[3];
+
+	if (data->map.map[0] == '\n')
+	{
+		ft_putendl_fd("Error\nMap doesn't begin at first line", 2);
+		return (1);
+	}
+	check[0] = count_elements(data->map.map, data);
+	if (check[0] == 1)
+		return (1);
+	check[1] = rectangular_check(data);
+	if (check[1] == 1)
+		return (1);
+	check[2] = closed_check(data);
+	if (check[2] == 1)
+		return (1);
+	return (0);
+}
 
 char	*floodfill(char *map, int i, int width)
 {
@@ -28,8 +49,11 @@ char	*floodfill(char *map, int i, int width)
 	return (map);
 }
 
-static char	*get_all_lines(char *map, char *line, char *tmp, int fd)
+static char	*get_all_lines(char *map, char *line, int fd)
 {
+	char	*tmp;
+
+	tmp = NULL;
 	while (line != NULL)
 	{
 		tmp = map;
@@ -55,7 +79,6 @@ static char	*map_cpy(char *file, t_data *data)
 	int		fd;
 	char	*line;
 	char	*map;
-	char	*tmp;
 	int		i;
 
 	i = 0;
@@ -63,10 +86,11 @@ static char	*map_cpy(char *file, t_data *data)
 	if (fd == -1)
 		return (NULL);
 	map = NULL;
-	tmp = NULL;
 	line = get_next_line(fd);
+	if (line == NULL)
+		return (NULL);
 	data->map.width = ft_strlen(line) - 1;
-	map = get_all_lines(map, line, tmp, fd);
+	map = get_all_lines(map, line, fd);
 	if (map == NULL)
 		return (NULL);
 	while (map[i++])
@@ -86,7 +110,10 @@ char	*map_manage(char *file, t_data *data)
 	check = 0;
 	data->map.map = map_cpy(file, data);
 	if (data->map.map == NULL)
+	{
+		ft_putendl_fd("Error\nNo map", 2);
 		return (NULL);
+	}
 	data->map.size = ft_strlen(data->map.map) + 1;
 	check = map_check(data);
 	if (check == 1)
