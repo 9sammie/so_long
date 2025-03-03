@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 14:20:41 by maballet          #+#    #+#             */
-/*   Updated: 2025/03/03 14:51:57 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/03/03 19:02:05 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 
-typedef struct	s_texture
+typedef struct s_texture
 {
 	void	*wall;
 	void	*floor;
@@ -32,7 +32,7 @@ typedef struct	s_texture
 	void	*player;
 }				t_texture;
 
-typedef struct	s_map
+typedef struct s_map
 {
 	int		width;
 	int		height;
@@ -44,7 +44,7 @@ typedef struct	s_map
 	char	*map;
 }				t_map;
 
-typedef struct	s_img
+typedef struct s_img
 {
 	char	*addr;
 	int		bpp;
@@ -54,15 +54,15 @@ typedef struct	s_img
 	int		y;
 }				t_img;
 
-typedef struct	s_data
+typedef struct s_data
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	void	*img_ptr;
-	int		move_count;
-	void	*textures[5];
-	t_map	map;
-	t_img	img;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	void		*img_ptr;
+	int			move_count;
+	void		*textures[5];
+	t_map		map;
+	t_img		img;
 	t_texture	texture;
 }				t_data;
 
