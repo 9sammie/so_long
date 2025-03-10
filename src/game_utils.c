@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:45:51 by maballet          #+#    #+#             */
-/*   Updated: 2025/02/27 16:21:03 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/03/10 16:52:30 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ static int	update_tiles_utils(t_data *data, int dir, int *i)
 	draw_tile(data, (*i + dir));
 	if (data->map.exit_count == 0)
 	{
-		close_game(data);
 		ft_putendl_fd("\n\n\n✧WOW✧⋋| ◉ ͟ʖ ◉ |⋌✧OMG✧\n\n(⚆ᗝ⚆)SUCCESS(⊙︿⊙)", 0);
+		close_game(data);
 		return (0);
 	}
 	if (data->map.exit_count != 0)
