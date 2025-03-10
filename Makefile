@@ -20,21 +20,21 @@ SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 #############################################################################################
 #############################################################################################
 
-NAME					=				so_long
-CC						=				cc
-CFLAGS					=				-Wall -Werror -Wextra -I/usr/include -Imlx -g3
-LFLAGS					=				-Lmlx -lmlx -lXext -lX11 -Imlx
-HEADERS					=				inc/so_long.h
-INCLUDES				=				-I inc -I $(LIBFT_DIR)/inc -I mlx
+NAME			=		so_long
+CC				=		cc
+CFLAGS			=		-Wall -Werror -Wextra -I/usr/include -Imlx -g3
+LFLAGS			=		-Lmlx -lmlx -lXext -lX11 -Imlx
+HEADERS			=		inc/so_long.h
+INCLUDES		=		-I inc -I $(LIBFT_DIR)/inc -I mlx
 
-LIBFT_DIR				=				libft
-LIBFT					=				$(LIBFT_DIR)/libft.a
+LIBFT_DIR		=		libft
+LIBFT			=		$(LIBFT_DIR)/libft.a
 
-MLX_DIR					=				mlx
-MLX_LIB					=				$(MLX_DIR)/libmlx_Linux.a
+MLX_DIR			=		mlx
+MLX_LIB			=		$(MLX_DIR)/libmlx_Linux.a
 
-OBJ_DIR					=				obj
-OBJ						=				$(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
+OBJ_DIR			=		obj
+OBJ				=		$(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 
 #############################################################################################
 #############################################################################################
