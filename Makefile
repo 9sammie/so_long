@@ -56,7 +56,7 @@ $(LIBFT):
 $(OBJ_DIR):
 		mkdir -p $(OBJ_DIR)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS) libft/inc/libft.h | $(OBJ_DIR)
 		$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 .compile: $(OBJ) $(LIBFT) $(MLX_LIB)

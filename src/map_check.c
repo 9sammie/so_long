@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 15:12:59 by maballet          #+#    #+#             */
-/*   Updated: 2025/03/03 16:46:28 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/03/11 15:58:35 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ int	map_check(t_data *data)
 	}
 	flofi = floodfill(ft_strdup(data->map.map), data->map.pos,
 			(data->map.width + 1));
-	if (ft_strchr(flofi, 'C') || ft_strchr(flofi, 'P'))
+	if (ft_strchr(flofi, 'C') || ft_strchr(flofi, 'P') || ft_strchr(flofi, 'E'))
 	{
 		ft_putendl_fd("Error\nMap not solvable", 2);
 		free(flofi);

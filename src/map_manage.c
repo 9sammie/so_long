@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:08:06 by maballet          #+#    #+#             */
-/*   Updated: 2025/03/03 16:38:54 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/03/11 16:12:10 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ int	check_inspect(t_data *data)
 
 char	*floodfill(char *map, int i, int width)
 {
+	int	j;
+
+	j = 0;
 	if (map[i] == 'V' || map[i] == '1' || map[i] == 'E')
 		return (NULL);
 	if (map[i] == 'C')
@@ -45,6 +48,16 @@ char	*floodfill(char *map, int i, int width)
 	floodfill(map, i + 1, width);
 	floodfill(map, i - width, width);
 	floodfill(map, i + width, width);
+	while (map[j])
+	{
+		if (map[j] == 'E')
+		{
+			if (map[j + 1] == 'V' || map[j - 1] == 'V' || map[j + width] == 'V'
+				|| map[j - width] == 'V')
+				map[j] = 'V';
+		}
+		j++;
+	}
 	return (map);
 }
 
