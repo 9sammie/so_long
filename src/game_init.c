@@ -6,11 +6,33 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 13:33:58 by maballet          #+#    #+#             */
-/*   Updated: 2025/03/03 17:06:46 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/03/17 16:31:27 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static int	find_ber(char *str)
+{
+	int len;
+
+	len = ft_strlen(str);
+	if (str[(len - 4)] == '.')
+	{
+		if (str[(len - 3)] == 'b')
+		{
+			if (str[(len - 2)] == 'e')
+			{
+				if (str[(len - 1)] == 'r')
+				{
+					if (str[len] == '\0')
+						return (0);
+				}
+			}
+		}
+	}
+	return (1);
+}
 
 static void	data_init(t_data *data)
 {
@@ -51,6 +73,11 @@ int	main(int argc, char **argv)
 	if (argc > 2)
 	{
 		ft_putendl_fd ("Error\nToo many arguments", 2);
+		return (1);
+	}
+	if (find_ber(argv[1]) == 1)
+	{
+		ft_putendl_fd ("Error\nnot a map.ber", 2);
 		return (1);
 	}
 	data_init (&data);
