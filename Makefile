@@ -70,6 +70,7 @@ clean:
 		rm -rf $(OBJ_DIR)
 		make -C $(LIBFT_DIR) clean
 		make -C $(MLX_DIR) clean
+		rm .compile
 
 fclean: clean
 		rm -f $(NAME)

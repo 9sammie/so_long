@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:45:51 by maballet          #+#    #+#             */
-/*   Updated: 2025/03/17 17:22:52 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/03/18 12:05:52 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	draw_tile(t_data *data, int i)
 		img = data->texture.exit;
 	if (img != NULL)
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-		img, data->img.x * 46, data->img.y * 46);
+			img, data->img.x * 46, data->img.y * 46);
 	else
 	{
 		ft_putendl_fd ("Error\nTexture missing", 2);

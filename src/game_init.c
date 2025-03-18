@@ -6,7 +6,7 @@
 /*   By: maballet <maballet@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 13:33:58 by maballet          #+#    #+#             */
-/*   Updated: 2025/03/17 16:31:27 by maballet         ###   ########lyon.fr   */
+/*   Updated: 2025/03/18 12:06:03 by maballet         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	find_ber(char *str)
 {
-	int len;
+	int	len;
 
 	len = ft_strlen(str);
 	if (str[(len - 4)] == '.')
